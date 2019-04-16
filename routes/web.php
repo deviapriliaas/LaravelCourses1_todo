@@ -21,3 +21,5 @@ Route::get('new-todo','todoController@create');
 Route::post('store-todo','todoController@store');
 Route::post('todos/{todo}/update','todoController@update');
 Route::get('todos/{todo}/delete','todoController@delete');
+Route::get('todos/{todo}/update_completed','todoController@completed_update');
+Route::get('todo-false','todoController@index2');

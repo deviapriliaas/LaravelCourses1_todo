@@ -10,7 +10,6 @@ class todoController extends Controller
     public function index()
     {
         $todos=ToDoModel::all();
-
         return view('todo.index',['todos'=>$todos]);
     }
     public function show($todoId)
@@ -39,6 +38,7 @@ class todoController extends Controller
         $todoCreate->completed=false;
 
         $todoCreate->save();
+        session()->flash('success','Created');
 
         return redirect('todos');
     }
@@ -64,6 +64,7 @@ class todoController extends Controller
 
         $todoUpdate->save();
 
+
         return redirect('todos');
     }
     public function delete($todoId)
@@ -71,6 +72,17 @@ class todoController extends Controller
         $todoDelete=ToDoModel::find($todoId);
 
         $todoDelete->delete($todoId);
+
+        return redirect('todos');
+    }
+    public function completed_update(ToDoModel $todo)
+    {
+        
+
+        $todo->completed=true;
+        $todo->save();
+
+        session()->flash('completed','its completed now');
 
         return redirect('todos');
     }
